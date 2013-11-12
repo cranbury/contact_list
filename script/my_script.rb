@@ -5,13 +5,12 @@ url = Addressable::URI.new(
   scheme: 'http',
   host: 'localhost',
   port: 3000,
-  path: '/contacts',
-  # query_values: {
-  #   'animals[dog]' => 'lassie',
-  #   'animals[cat]' => 'garfield',
-  #   'animals[fish][starfish]' => 'patrick',
-  #   'hey' => 'ya'
-  # }
-).to_s
+  path: 'contacts/2',
+  ).to_s
 
-puts RestClient.get(url)
+# puts RestClient.post(url, {'contact[name]' => 'Gred',
+#    'contact[email]' => 'Greg@appacademy.io', 'contact[user_id]' => 1})
+
+puts RestClient.delete(url)
+
+# puts RestClient.get(url)

@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render text: User.find_by_id(params[:id]).show_name
+    render :json => User.find_by_id(params[:id])
   end
 
   def update
@@ -28,7 +28,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    render :json => User.find_by_id(params[:id]).destroy
+    User.find_by_id(params[:id]).destroy
+    head :ok
   end
 
 end

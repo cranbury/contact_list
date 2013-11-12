@@ -2,15 +2,26 @@ FirstRoutes::Application.routes.draw do
 
   #resources :users
 
-  get 'users' => 'users#index'
-  post 'users' => 'users#create'
-  get 'users/new' => 'users#new'
-  get 'users/:id/edit' => 'users#edit'
-  get 'users/:id' => 'users#show'
-  put 'users/:id' => 'users#update'
-  delete 'users/:id' => 'users#destroy'
+  # get 'users' => 'users#index'
+  # post 'users' => 'users#create'
+  # get 'users/new' => 'users#new'
+  # get 'users/:id/edit' => 'users#edit'
+  # get 'users/:id' => 'users#show'
+  # put 'users/:id' => 'users#update'
+  # delete 'users/:id' => 'users#destroy'
 
-  resources :contacts, only: [:index, :create, :update, :destroy, :show]
+  resources :users do
+    resources :contacts, only: [:index] do
+      collection do
+        get 'favorites'
+      end
+    end
+  end
+
+  resources :contacts, only: [:create, :update, :destroy, :show]
+
+
+  resources :contact_shares, only: [:create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

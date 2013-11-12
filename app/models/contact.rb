@@ -15,7 +15,7 @@ class Contact < ActiveRecord::Base
   primary_key: :id
   )
 
-  has_many :contact_shared_by, :through => :contact_shares, source: :sharer
+  has_many :contact_shared_with, :through => :contact_shares, source: :shared_with
 
   validates(
     :email,
@@ -23,4 +23,11 @@ class Contact < ActiveRecord::Base
     :user_id,
     presence: true
     )
+
+
+    def self.contacts_for_user_id(user_id)
+      Contact.find_by_sql "SELECT * FROM contacts LEFT OUTER JOIN contact_shares
+      ON contacts.id = (contact_shares.contact_id) WHERE contact_shares.user_id = #{user_id}
+      OR contacts.user_id = #{user_id}"
+    end
 end

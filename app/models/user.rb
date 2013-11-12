@@ -24,7 +24,11 @@ class User < ActiveRecord::Base
    primary_key: :id
    )
 
-   has_many :contacts_shared, :through => :contact_shares, source: :shared_contact
+   #lists the users we shared contacts with others
+   has_many :users_we_shared_with, :through => :contact_shares, source: :shared_with
+
+   #lists the users that shared contacts with me
+   has_many :contacts_shared_to_us, :through => :contact_shares, source: :shared_contact
 
 
    def show_name

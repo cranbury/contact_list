@@ -2,7 +2,7 @@ class ContactShare < ActiveRecord::Base
   attr_accessible :contact_id, :user_id
 
   belongs_to(
-  :sharer,
+  :shared_with,
   class_name: 'User',
   foreign_key: :user_id,
   primary_key: :id
