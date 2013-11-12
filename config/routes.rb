@@ -10,6 +10,8 @@ FirstRoutes::Application.routes.draw do
   put 'users/:id' => 'users#update'
   delete 'users/:id' => 'users#destroy'
 
+  resources :contacts, only: [:index, :create, :update, :destroy, :show]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
